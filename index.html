@@ -24,11 +24,52 @@
     //   e.target.style.backgroundColor = "rebeccapurple";
     // });
     console.log($);
-    console.log(jQuery);
-    console.log("$ === jQuery", $ === jQuery);
+    // console.log(jQuery);
+    // console.log("$ === jQuery", $ === jQuery);
     // console.log($(window));
     // console.log($(""));
-    console.log($.constructor);
-    console.log($.constructor == jQuery.constructor);
+    // console.log($.constructor);
+    // console.log($.constructor == jQuery.constructor);
+
+    function A() {}
+
+    // default
+    // A.prototype.constructor = A;
+    // // modify
+    // // A.prototype.constructor = Array;
+    // var a = new A();
+    // console.log(" a constructor", a.constructor);
+    //
+
+    // static方法
+    $.extend({
+      a: function () {
+        console.log("extend a");
+      },
+      b: function () {
+        console.log("extend b");
+      },
+    });
+
+    // 实例方法
+    $.fn.extend({
+      a: function () {
+        console.log("extend 1");
+      },
+      b: function () {
+        console.log("extend 2");
+      },
+    });
+
+    $.a();
+    $.b();
+
+    $().a();
+    $().b();
+
+    // var noConflict = $.noConflict();
+    // noConflict(function () {
+    //   console.log("noConflict test");
+    // });
   </script>
 </html>

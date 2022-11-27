@@ -12,7 +12,7 @@
  * Date: 2013-07-03T13:30Z
  */
 (function( window, undefined ) {
-
+    console.log("step 1")
 // Can't do this because several apps including ASP.NET trace
 // the stack via arguments.caller.callee and Firefox dies if
 // you try to trace through "use strict" call chains. (#13335)
@@ -60,6 +60,7 @@ var
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
 		// The jQuery object is actually just the init constructor 'enhanced'
+		console.log("jQuery local")
 		return new jQuery.fn.init( selector, context, rootjQuery );
 	},
 
@@ -94,13 +95,18 @@ var
 	};
 
 jQuery.fn = jQuery.prototype = {
+
 	// The current version of jQuery being used
 	jquery: core_version,
 
+	// 修正指向，保证指向jQuery
 	constructor: jQuery,
+
+	// 返回jQuery对象
 	init: function( selector, context, rootjQuery ) {
 		var match, elem;
-
+		
+		console.log("jQuery fn")	
 		// HANDLE: $(""), $(null), $(undefined), $(false)
 		if ( !selector ) {
 			return this;
@@ -280,6 +286,7 @@ jQuery.fn = jQuery.prototype = {
 };
 
 // Give the init function the jQuery prototype for later instantiation
+// jquery的fn挂载到init原型
 jQuery.fn.init.prototype = jQuery.fn;
 
 jQuery.extend = jQuery.fn.extend = function() {
@@ -288,6 +295,10 @@ jQuery.extend = jQuery.fn.extend = function() {
 		i = 1,
 		length = arguments.length,
 		deep = false;
+
+	console.log("extend start");
+	console.log("extend arguments[0]: ", arguments[0]);
+	console.log("extend target: ", target);
 
 	// Handle a deep copy situation
 	if ( typeof target === "boolean" ) {
@@ -8823,7 +8834,10 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 // If there is a window object, that at least has a document property,
 // define jQuery and $ identifiers
 if ( typeof window === "object" && typeof window.document === "object" ) {
+	console.log("jquery final");
 	window.jQuery = window.$ = jQuery;
 }
+
+console.log("step final");
 
 })( window );
