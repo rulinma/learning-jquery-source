@@ -354,6 +354,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 	}
 
 	// Return the modified object
+	console.log("final target: ", target)
 	return target;
 };
 
