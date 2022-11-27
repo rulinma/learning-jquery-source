@@ -67,6 +67,16 @@
     $().a();
     $().b();
 
+    $["attr_test"] = "xxx";
+    console.log("attr_test: ", $["attr_test"]);
+
+    $["attr_test"] = function () {
+      console.log("xxxx");
+      return "xxxxx";
+    };
+
+    console.log("attr_test_function: ", $["attr_test"]());
+
     // var noConflict = $.noConflict();
     // noConflict(function () {
     //   console.log("noConflict test");
